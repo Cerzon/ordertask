@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+        td {
+            padding: 0.4em 1em;
+            border: 1px solid gray;
+        }
+    </style>
+
+    <table>
+        <tr>
+            <td>Заказ создан</td>
+            <td>Рег.номер заказа</td>
+            <td>Артикул детали</td>
+            <td>Цена детали</td>
+            <td>Кол-во</td>
+            <td>Стоимость</td>
+        </tr>
+        {% for item in items %}
+        <tr>
+            <td>{{ item.order.created }}</td>
+            <td>{{ item.order.reg_id }}</td>
+            <td>{{ item.vendor_code }}</td>
+            <td>{{ item.price }}</td>
+            <td>{{ item.amount }}</td>
+            <td>{{ item.cost }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
