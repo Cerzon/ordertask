@@ -1,0 +1,54 @@
+<svg
+    version="1.1"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 46 16"
+    width="{{ chart_width }}px"
+>
+    <defs>
+        <style>
+            .chart-field-border {
+                fill: none;
+                stroke: blue;
+                stroke-width: 0.1;
+            }
+            .chart-axis {
+                fill: none;
+                stroke: #aa3333;
+                stroke-width: 0.3;
+            }
+            .chart-price-bar {
+                fill: none;
+                stroke: #66ff66;
+                stroke-width: 3;
+            }
+            .chart-amount-curve {
+                fill: none;
+                stroke: #3366ff;
+                stroke-width: 0.6;
+            }
+        </style>
+    </defs>
+    <!-- рамка вокруг всего графика -->
+    <rect class="chart-field-border" width="46" height="16" />
+    <!-- ось абсцисс (x) -->
+    <line class="chart-axis" x1="2" x2="44" y1="14" y2="14" />
+    <!-- ось ординат (y) -->
+    <line class="chart-axis" x1="2" x2="2" y1="2" y2="14" />
+
+    <!-- рисуем bar-chart про цены -->
+    {% for price in chart_prices %}
+        <line class="chart-price-bar"
+            x1="{{ price.0 }}"
+            x2="{{ price.0 }}"
+            y1="{{ price.1 }}"
+            y2="10"
+            transform="translate(3, 3)"
+        />
+    {% endfor %}
+
+    <!-- рисуем line-plot про количество -->
+    <path class="chart-amount-curve"
+        d="M{{ chart_amounts.0.0 }} {{ chart_amounts.0.1 }}{% for amount in chart_amounts %}L{{ amount.0 }} {{ amount.1 }}{% endfor %}"
+        transform="translate(3, 3)"
+    />
+</svg>
